@@ -39,14 +39,14 @@ public:
     }
     
     //seters
-    void setClave(string aux){
-        clave = aux;
+    void setClave(string saux){
+        clave = saux;
     }
-    void setTiempoMax(int aux){
-        tiempoMax = max;
+    void setTiempoMax(int iaux){
+        tiempoMax = iaux;
     }
-    void setTipo(char aux){
-        tipo = aux;
+    void setTipo(char caux){
+        tipo = caux;
     }
     
 protected:

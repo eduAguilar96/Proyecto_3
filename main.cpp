@@ -3,6 +3,10 @@
 using namespace std;
 
 #include "Hora.h"
+#include "Reserva.h"
+#include "Servicio.h"
+#include "Aparato.h"
+#include "Cancha.h"
 
 void showMenu(){
     cout << "-------------------MENU-------------------" <<  endl;
