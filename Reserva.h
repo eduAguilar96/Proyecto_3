@@ -9,6 +9,8 @@
 #ifndef Reserva_h
 #define Reserva_h
 
+#include "Hora.h"
+
 class Reserva
 {
     public:
@@ -49,12 +51,12 @@ class Reserva
     }
     Hora Reserva::getHoraInicio()
     {
-        return hAux;
+        return hHoraInicio;
     }
     void Reserva::setHoraInicio(Hora hAux)
     {
-        hHoraInicio.setHh(hAux.getHh());
-        hHoraInicio.setHh(hAux.getMm());
+        hHoraInicio.setH(hAux.getH());
+        hHoraInicio.setM(hAux.getM());
     }
     int Reserva::getDuracion()
     {
@@ -74,8 +76,8 @@ class Reserva
     {
         sClaveServicio = sAux;
         iIdCliente = iAux;
-        hHoraInicio.setHh(hAux.getHh());
-        hHoraInicio.setHh(hAux.getMm());
+        hHoraInicio.setH(hAux.getH());
+        hHoraInicio.setH(hAux.getM());
         iDuracion = iAux2;
     }
 

@@ -42,7 +42,7 @@ class Aparato: public Servicio {
     }
     
     double calculaCosto(){
-    
+        
     }
     
 private:
