@@ -9,5 +9,51 @@
 #ifndef Servicio_h
 #define Servicio_h
 
+class Servicio{
+public:
+    //metodos virtuales
+    virtual void Muestra() = 0;
+    virtual double calculaCosto() = 0;
+    
+    //constructores
+    Servicio(){
+        clave = "clave";
+        tiempoMax = 0;
+        tipo = 'A';
+    }
+    Servicio(string saux, int iaux, char caux){
+        clave = saux;
+        tiempoMax = iaux;
+        tipo = caux;
+    }
+    
+    //geters
+    string getClave(){
+        return clave;
+    }
+    int getTiempoMax(){
+        return tiempoMax;
+    }
+    char getTipo(){
+        return tipo;
+    }
+    
+    //seters
+    void setClave(string aux){
+        clave = aux;
+    }
+    void setTiempoMax(int aux){
+        tiempoMax = max;
+    }
+    void setTipo(char aux){
+        tipo = aux;
+    }
+    
+protected:
+    string clave;
+    int tiempoMax;
+    char tipo;
+};
+
 
 #endif /* Servicio_h */
