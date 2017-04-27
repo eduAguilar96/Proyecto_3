@@ -41,8 +41,8 @@ class Aparato: public Servicio {
         cout << "Descripcion: " << descripcion << endl;
     }
     
-    double calculaCosto(){
-        
+    double calculaCosto(int i){
+        return i*costoX15min;
     }
     
 private:
