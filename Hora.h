@@ -4,11 +4,11 @@
 class Hora {
 public:
     //Constructores
-    Tiempo(){
+    Hora(){
         mm = 0;
         hh = 0;
     }
-    Tiempo(int h, int m){
+    Hora(int h, int m){
         mm = m;
         hh = h;
     }
@@ -37,14 +37,14 @@ public:
     }
     
     //Metodos de sobrecarga
-    Tiempo operator+ (Tiempo T1, int m){
+    friend Hora operator+ (Hora H1, int m){
         
-        Tiempo aux;
+        Hora aux;
         int i;
         
         //igualacion
-        aux.hh = T1.hh;
-        aux.mm = T1.mm + m;
+        aux.hh = H1.hh;
+        aux.mm = H1.mm + m;
         
         //validacion
         if (aux.mm > 59){
@@ -56,7 +56,7 @@ public:
         return aux;
     }
     
-    bool operator>= (Tiempo T){
+    bool operator>= (Hora T){
         
         if(hh*60 + mm >= T.hh*60 + T.mm){
             return true;
@@ -66,7 +66,7 @@ public:
         }
     }
     
-    bool operator<= (Tiempo T){
+    bool operator<= (Hora T){
         
         if(hh*60 + mm <= T.hh*60 + T.mm){
             return true;
@@ -76,7 +76,7 @@ public:
         }
     }
     
-    bool operator== (Tiempo T){
+    bool operator== (Hora T){
         
         if(hh*60 + mm == T.hh*60 + T.mm){
             return true;
@@ -84,6 +84,17 @@ public:
         else{
             return false;
         }
+    }
+    
+    friend ostream& operator<< (ostream &salida, Hora &aux){
+        salida << aux.hh << ":" << aux.mm;
+        return salida;
+    }
+    
+    friend istream& operator>> (istream &entrada, Hora &aux){
+        entrada >> aux.hh;
+        entrada >> aux.mm;
+        return entrada;
     }
     
 private:
