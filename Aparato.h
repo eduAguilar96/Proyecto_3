@@ -1,15 +1,8 @@
-//
-//  Aparato.h
-//  Proyecto_3
-//
-//  Created by Eduardo on 4/27/17.
-//  Copyright © 2017 Eduardo Aguilar. All rights reserved.
-//
-
 #ifndef Aparato_h
 #define Aparato_h
 
 #include "Servicio.h"
+#include "Hora.h"
 
 class Aparato: public Servicio {
     //constructores
@@ -43,6 +36,9 @@ class Aparato: public Servicio {
     
     double calculaCosto(int i){
         return i*costoX15min;
+    }
+    double calculaCosto(Hora i){
+        return (i.getH()*60 + i.getM())%15 * costoX15min;
     }
     
 private:
