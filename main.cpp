@@ -5,7 +5,6 @@ using namespace std;
 
 #include "Hora.h"
 #include "Reserva.h"
-#include "Servicio.h"
 #include "Aparato.h"
 #include "Cancha.h"
 
@@ -23,6 +22,11 @@ void showMenu(){
 }
 
 int main() {
+
+    Servicio *servicios[20];
+    Reserva *reservaciones[40];
+    
+    
     
     int iOpt = 0;
     
