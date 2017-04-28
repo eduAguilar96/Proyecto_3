@@ -94,26 +94,35 @@ void ConsultarListaReservaciones(Reserva *res[]){
 /*
  ConsultarReservacionesPorServicio
 
- Ense;a al todas las reservaciones por dicho servicio
+ Enseña al todas las reservaciones por dicho servicio
 
  Parametros:
- nada
+ El arreglo de reservaciones, el arreglo de servicios y el numero de reservaciones
 
  Return:
  nada   void
  */
     void ConsultarReservacionesPorServicio(Servicio *serv[], Reserva *res[], int iNumServ){
+        bool bExiste = false;
         string claveServ;
-        cout << "Porfavor ingrese la clave del servicio: " << endl;
-        cin >> claveServ;
+        // ciclo para verificar si la clave del espectador exista
+        do{
+            cout << "Porfavor ingrese la clave del servicio: " << endl;
+            cin >> claveServ;
+            cin.ignore();
+            // ciclo que compara clave introducida con todas las que existen el los objetos de tipo espectadores
+                for(int i = 0; i < 20; i++){
+                    if (claveServ == serv[i]->getClave())
+                    {
+                        bExiste=true;
+                        serv[i]->Muestra();
+                        cout << endl;
+                    }
+                }
+            if(bExiste == false)
+                cout << "No existe una esa clave. Intentelo de nuevo" << endl;
+        }while(bExiste==false);
 
-        for(int i = 0; i < 20; i++){
-            if (claveServ == serv[i]->getClave())
-            {
-                serv[i]->Muestra();
-                cout << endl;
-            }
-        }
         for(int i = 0; i < iNumServ; i++)
         {
             if (claveServ == res[i]->getClaveServicio())
@@ -142,7 +151,11 @@ void ConsultarListaReservaciones(Reserva *res[]){
  Return:
  nada   void
 */
-void ConsultarReservacionesPorHora(Hora haux){
+void ConsultarReservacionesPorHora(Reserva *res[]){
+    Hora haux;
+    cout << "Porfavor ingrese la hora a buscar" << endl;
+    cin >> haux;
+    cout << haux << endl;
 }
 /*
  Main
@@ -229,8 +242,7 @@ int main() {
                 break;}
 
             case 4:{
-                Hora haux;
-                ConsultarReservacionesPorHora(haux);
+                ConsultarReservacionesPorHora(reservaciones);
                 break;}
 
             case 5:
