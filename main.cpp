@@ -102,9 +102,19 @@ void ConsultarListaReservaciones(Reserva *res[]){
  Return:
  nada   void
  */
-void ConsultarReservacionesPorServicio(string saux){
-    cout << "test" << endl;
-}
+    void ConsultarReservacionesPorServicio(Servicio *serv[], Reserva *res[]){
+        string claveServ;
+        cout << "Porfavor ingrese la clave del servicio: " << endl;
+        cin >> claveServ;
+
+        for(int i = 0; i < 20; i++){
+            if (claveServ == serv[i]->getClave())
+            {
+                serv[i]->Muestra();
+                cout << endl;
+            }
+        }
+    }
 
 /*
  ConsultarReservacionesPorHora
@@ -200,8 +210,7 @@ int main() {
                 break;
 
             case 3:{
-                string claveServ;
-                ConsultarReservacionesPorServicio(claveServ);
+                ConsultarReservacionesPorServicio(servicios, reservaciones);
                 break;}
 
             case 4:{
