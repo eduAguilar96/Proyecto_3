@@ -57,7 +57,11 @@ void showMenu(){
  Return:
  nada   void
 */
-void ConsultarListaServicios(){
+void ConsultarListaServicios(Servicio *serv[]){
+    for(int i = 0; i < 20; i++){
+        serv[i]->Muestra();
+        cout << endl;
+    }
 }
 
 /*
@@ -71,7 +75,19 @@ void ConsultarListaServicios(){
  Return:
  nada   void
  */
-void ConsultarListaReservaciones(){
+void ConsultarListaReservaciones(Reserva *res[]){
+    for(int i = 0; i < 7; i++){
+        cout << "Clave: " << res[i]->getClaveServicio() << endl;
+        cout << "Id del cliente: " << res[i]->getIdCliente() << endl;
+        Hora haux;
+        haux.setM(res[i]->getHoraInicio().getM());
+        haux.setH(res[i]->getHoraInicio().getH());
+        cout << "Hora de Inicio: "<< haux << endl;
+        haux.setM(res[i]->CalculaHoraFinReservacion().getM());
+        haux.setH(res[i]->CalculaHoraFinReservacion().getH());
+        cout << "Hora de terminacion: " << haux << endl;
+        cout << endl;
+    }
 }
 
 /*
@@ -169,16 +185,16 @@ int main() {
     
     while(iOpt != 6 ){
         
-        //showMenu();
+        showMenu();
         cin >> iOpt;
         
         switch (iOpt) {
             case 1:
-                ConsultarListaServicios();
+                ConsultarListaServicios(servicios);
                 break;
                 
             case 2:
-                ConsultarListaReservaciones();
+                ConsultarListaReservaciones(reservaciones);
                 break;
                 
             case 3:{
