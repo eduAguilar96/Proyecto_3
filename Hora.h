@@ -40,7 +40,7 @@ public:
     friend Hora operator+ (Hora H1, int m){
         
         Hora aux;
-        int i;
+        int minutosSobrantes;
         
         //igualacion
         aux.hh = H1.hh;
@@ -48,9 +48,12 @@ public:
         
         //validacion
         if (aux.mm > 59){
-            i = aux.mm % 60;
-            aux.mm -= 60*i;
-            aux.hh += i;
+            minutosSobrantes = aux.mm % 60;
+            aux.hh += (aux.mm-minutosSobrantes)/60;
+            aux.mm = minutosSobrantes;
+            if(aux.hh > 24){
+                aux.hh -= 24;
+            }
         }
         
         return aux;

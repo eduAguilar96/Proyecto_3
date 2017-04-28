@@ -72,7 +72,7 @@ class Reserva
         sClaveServicio = sAux;
         iIdCliente = iAux;
         hHoraInicio.setH(hAux.getH());
-        hHoraInicio.setH(hAux.getM());
+        hHoraInicio.setM(hAux.getM());
         iDuracion = iAux2;
     }
     Hora Reserva::CalculaHoraFinReservacion()

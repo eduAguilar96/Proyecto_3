@@ -83,6 +83,7 @@ void ConsultarListaReservaciones(Reserva *res[]){
         haux.setM(res[i]->getHoraInicio().getM());
         haux.setH(res[i]->getHoraInicio().getH());
         cout << "Hora de Inicio: "<< haux << endl;
+        cout << "Duracion: "<< res[i]->getDuracion() << endl;
         haux.setM(res[i]->CalculaHoraFinReservacion().getM());
         haux.setH(res[i]->CalculaHoraFinReservacion().getH());
         cout << "Hora de terminacion: " << haux << endl;
