@@ -47,6 +47,61 @@ void showMenu(){
 }
 
 /*
+ Consultar lista servicios
+ 
+ Ense;a al usuarios todos los servicios
+ 
+ Parametros:
+ nada
+ 
+ Return:
+ nada   void
+*/
+void ConsultarListaServicios(){
+}
+
+/*
+ Consultar lista reservaciones
+ 
+ Ense;a al usuarios todos los reservaciones
+ 
+ Parametros:
+ nada
+ 
+ Return:
+ nada   void
+ */
+void ConsultarListaReservaciones(){
+}
+
+/*
+ ConsultarReservacionesPorServicio
+ 
+ Ense;a al todas las reservaciones por dicho servicio
+ 
+ Parametros:
+ nada
+ 
+ Return:
+ nada   void
+ */
+void ConsultarReservacionesPorServicio(string saux){
+}
+
+/*
+ ConsultarReservacionesPorHora
+ 
+ Ense;a al todas las reservaciones por dicha Hora
+ 
+ Parametros:
+ nada
+ 
+ Return:
+ nada   void
+*/
+void ConsultarReservacionesPorHora(Hora haux){
+}
+/*
  Main
  
  Inisializa variables, maneja logica basica
@@ -100,6 +155,7 @@ int main() {
     int id, duracion, hh, mm, numRes = 0;
     Hora haux;
     
+    //cargar arreglo de reservaciones
     while(!arch2.eof()){
         arch2 >> clave >> hh >> mm >> duracion >> id;
         haux.setH(hh);
@@ -118,18 +174,25 @@ int main() {
         
         switch (iOpt) {
             case 1:
+                ConsultarListaServicios();
                 break;
                 
             case 2:
+                ConsultarListaReservaciones();
                 break;
                 
-            case 3:
-                break;
+            case 3:{
+                string claveServ;
+                ConsultarReservacionesPorServicio(claveServ);
+                break;}
                 
-            case 4:
-                break;
+            case 4:{
+                Hora haux;
+                ConsultarReservacionesPorHora(haux);
+                break;}
                 
             case 5:
+                
                 break;
                 
             case 6:
