@@ -17,7 +17,7 @@ public:
         conInstructor = instr;
         descripcion = desc;
     }
-    
+
     //metodos
     void Muestra(){
         cout << "Aparato" << endl;
@@ -34,19 +34,19 @@ public:
         cout << endl;
         cout << "Descripcion: " << descripcion << endl;
     }
-    
+
     double calculaCosto(int i){
-        return i*costoX15min;
+        return i/15*costoX15min;
     }
     double calculaCosto(Hora i){
         return (i.getH()*60 + i.getM())%15 * costoX15min;
     }
-    
+
 private:
     double costoX15min;
     bool conInstructor;
     string descripcion;
-    
+
 };
 
 #endif /* Aparato_h */
