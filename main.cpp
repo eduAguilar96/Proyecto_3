@@ -176,6 +176,24 @@ void ConsultarReservacionesPorHora(Reserva *res[], int iNumRes, Servicio *serv[]
 
 }
 
+void ActualizarTexto(Reserva reservacion, int numRes){
+    //Manejo de documento
+    ifstream archEnt;
+    ofstream archSal("Reserva.txt");
+    archEnt.open("Reserva.txt");
+    int i = 0;
+    string saux;
+    
+    
+    while(!archEnt.eof()){
+        
+        getline(archEnt,saux);
+        
+        if(i == numRes-2){
+            archSal << reservacion.getClaveServicio() <<" "<< reservacion.getHoraInicio().getH() <<" "<< reservacion.getHoraInicio().getM() <<" "<< reservacion.getDuracion() <<" "<< reservacion.getIdCliente();
+        }
+    }
+}
 /*
  Hacer reservacion
  
@@ -375,7 +393,7 @@ int main() {
                     if(HacerReservacion(idCliente,claveServ,haux,duracion, numRes,reservaciones,servicios, reservacion)){
                         reservaciones[numRes] = &reservacion;
                         numRes++;
-                        cout << reservacion.getIdCliente() << endl;
+                        ActualizarTexto(reservacion, numRes);
                     }
                 }else{
                     cout << "El cupo limitado de reservaciones se a agotado" << endl;
