@@ -72,7 +72,7 @@ void ConsultarListaServicios(Servicio *serv[]){
  Parametros:
  nada
 
- Return:
+ Return:git push --set-upstream origin devCD
  nada   void
  */
 void ConsultarListaReservaciones(Reserva *res[]){
@@ -102,7 +102,7 @@ void ConsultarListaReservaciones(Reserva *res[]){
  Return:
  nada   void
  */
-    void ConsultarReservacionesPorServicio(Servicio *serv[], Reserva *res[]){
+    void ConsultarReservacionesPorServicio(Servicio *serv[], Reserva *res[], int iNumServ){
         string claveServ;
         cout << "Porfavor ingrese la clave del servicio: " << endl;
         cin >> claveServ;
@@ -114,6 +114,21 @@ void ConsultarListaReservaciones(Reserva *res[]){
                 cout << endl;
             }
         }
+        for(int i = 0; i < iNumServ; i++)
+        {
+            if (claveServ == res[i]->getClaveServicio())
+            {
+                Hora haux;
+                haux.setM(res[i]->getHoraInicio().getM());
+                haux.setH(res[i]->getHoraInicio().getH());
+                cout << "Hora de Inicio: "<< haux << endl;
+                haux.setM(res[i]->CalculaHoraFinReservacion().getM());
+                haux.setH(res[i]->CalculaHoraFinReservacion().getH());
+                cout << "Hora de terminacion: " << haux << endl;
+                cout << endl;
+            }
+        }
+
     }
 
 /*
@@ -210,7 +225,7 @@ int main() {
                 break;
 
             case 3:{
-                ConsultarReservacionesPorServicio(servicios, reservaciones);
+                ConsultarReservacionesPorServicio(servicios, reservaciones, numRes);
                 break;}
 
             case 4:{
