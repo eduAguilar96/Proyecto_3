@@ -151,11 +151,29 @@ void ConsultarListaReservaciones(Reserva *res[]){
  Return:
  nada   void
 */
-void ConsultarReservacionesPorHora(Reserva *res[]){
+void ConsultarReservacionesPorHora(Reserva *res[], int iNumRes, Servicio *serv[]){
     Hora haux;
     cout << "Porfavor ingrese la hora a buscar" << endl;
     cin >> haux;
-    cout << haux << endl;
+    for (int i = 0; i < iNumRes; i++)
+    {
+        Hora haux2;
+        haux2.setM(res[i]->getHoraInicio().getM());
+        haux2.setH(res[i]->getHoraInicio().getH());
+        if (haux2 == haux)
+        {
+            for (int j = 0; j < 20; j++)
+            {
+                if (res[i] ->getClaveServicio() == serv[j]->getClave())
+                {
+                    serv[j]->Muestra();
+                }
+
+            }
+
+        }
+    }
+
 }
 /*
  Main
@@ -242,7 +260,7 @@ int main() {
                 break;}
 
             case 4:{
-                ConsultarReservacionesPorHora(reservaciones);
+                ConsultarReservacionesPorHora(reservaciones,numRes,servicios);
                 break;}
 
             case 5:
