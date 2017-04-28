@@ -18,6 +18,9 @@ class Reserva
         //Constructores
         Reserva();
         Reserva(string sAux, int iAux, Hora hAux, int iAux2);
+        //Otros Metodos
+        Hora CalculaHoraFinReservacion();
+
     private:
         string sClaveServicio;
         int iIdCliente;
@@ -71,6 +74,10 @@ class Reserva
         hHoraInicio.setH(hAux.getH());
         hHoraInicio.setH(hAux.getM());
         iDuracion = iAux2;
+    }
+    Hora Reserva::CalculaHoraFinReservacion()
+    {
+        return (hHoraInicio + iDuracion);
     }
 
 #endif /* Reserva_h */
