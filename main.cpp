@@ -175,6 +175,90 @@ void ConsultarReservacionesPorHora(Reserva *res[], int iNumRes, Servicio *serv[]
     }
 
 }
+
+/*
+ Hacer reservacion
+ 
+ Crea una reservacion y la actualiza en el txt
+ 
+ Parametros:
+ muchos
+ 
+ Return:
+ nada   void
+ */
+bool HacerReservacion(int idCliente, string claveServ, Hora haux, int duracion, int numRes, Reserva *reservaciones[],Servicio *servicios[], Reserva &reservacion){
+    //variables auxiliares
+    bool b = true, a = true;
+    char input;
+    int indiceServ = 0;
+    
+    cout << endl;
+    
+    //verificar que la clave del servicio exista
+    while(b){
+        for(int i = 0;i < 20 && b; i++){
+            if(servicios[i]->getClave() == claveServ){
+                b = false;
+                indiceServ = i;
+            }
+        }
+        if(b){
+            cout << "Esa clave no existe" << endl;
+            cout << "Porfavor reingrese la clave :";
+            cin >> claveServ;
+        }
+    }
+    
+    cout << "Usted quiere reservar... " << endl;
+    servicios[indiceServ]->Muestra();
+    cout << "...una duracion de " << duracion << endl;
+    
+    b = true;
+    
+    while(duracion > servicios[indiceServ]->getTiempoMax() && b){
+        cout << "la cual exide el tiempo maximo" << endl;
+        cout << "Desea rentarlo por menos tiempo?[y/n]" << endl;
+        cin >> input;
+        if(input == 'y' || input == 'Y'){
+            cout << "Porfavor ingrese la duracion: ";
+            cin >> duracion;
+        }else{
+            b = false;
+            a = false;
+        }
+    }
+    
+    
+    if(!b || a){
+        for(int i = 0; i < numRes && a; i++){
+            //checar si hora de incio no esta entre otra horaa de incio y finalizar
+            // y checar si hora de finalizar no esta entre otra hora de incio y finalizar
+            //y checar si concuerdan los codigos de servicio
+
+            //codigo de servicio concuerda
+            if(reservaciones[i]->getClaveServicio() == claveServ){
+                cout << "mismo codigo" << endl;
+                //hora de incio entre horas
+                if((reservaciones[i]->getHoraInicio() <= haux &&
+                    haux <=reservaciones[i]->CalculaHoraFinReservacion())
+                    ||
+                    (reservaciones[i]->getHoraInicio() <= haux+duracion &&
+                    haux+duracion <=reservaciones[i]->CalculaHoraFinReservacion())){
+                        a = false;
+                }
+            }
+        }
+        if(!a){
+            cout << "Esa hora y duracion no esta disponible" << endl;
+        }
+    }
+    
+    reservacion.setDuracion(duracion);
+    reservacion.setHoraInicio(haux);
+    
+    return a;
+}
 /*
  Main
 
@@ -238,7 +322,10 @@ int main() {
 
         numRes++;
     }
-
+    
+    arch1.close();
+    arch2.close();
+    
     int iOpt = 0;
 
     while(iOpt != 6 ){
@@ -263,9 +350,38 @@ int main() {
                 ConsultarReservacionesPorHora(reservaciones,numRes,servicios);
                 break;}
 
-            case 5:
+            case 5:{
+                if(numRes < 40){
+                    string claveServ;
+                    int hh = 25, mm = 60, idCliente, duracion;
+                    cout << "Porfavor ingrese su ID de cliente: ";
+                    cin >> idCliente;
+                    cout << "Porfavor ingrese la clave del servicio: ";
+                    cin >> claveServ;
+                    while(hh > 24){
+                        cout << "Porfavor ingrese la hora (hh) de inicio: ";
+                        cin >> hh;
+                        if(hh > 24){cout << "Ese numero es invalido" << endl;}
+                    }
+                    while(mm > 59){
+                        cout << "Porfavor ingrese la hora (mm) de inicio: ";
+                        cin >> mm;
+                        if(hh > 59){cout << "Ese numero es invalido" << endl;}
+                    }
+                    Hora haux(hh,mm);
+                    cout << "Porfavor ingrese la duracion: ";
+                    cin >> duracion;
+                    Reserva reservacion(claveServ,idCliente,haux,duracion);
+                    if(HacerReservacion(idCliente,claveServ,haux,duracion, numRes,reservaciones,servicios, reservacion)){
+                        reservaciones[numRes] = &reservacion;
+                        numRes++;
+                        cout << reservacion.getIdCliente() << endl;
+                    }
+                }else{
+                    cout << "El cupo limitado de reservaciones se a agotado" << endl;
+                }
 
-                break;
+                break;}
 
             case 6:
                 cout << "Saliendo de la applicacion" << endl;
