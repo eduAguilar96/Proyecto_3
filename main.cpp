@@ -95,8 +95,18 @@ int main() {
         numServ++;
     }
     
+    //variables auxiliares
+    string clave;
+    int id, duracion, hh, mm, numRes = 0;
+    Hora haux;
+    
     while(!arch2.eof()){
+        arch2 >> clave >> hh >> mm >> duracion >> id;
+        haux.setH(hh);
+        haux.setM(mm);
+        reservaciones[numRes] = new Reserva(clave,id,haux,duracion);
         
+        numRes++;
     }
     
     int iOpt = 0;
