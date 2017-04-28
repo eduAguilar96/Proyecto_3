@@ -5,7 +5,7 @@ class Servicio{
 public:
     //metodos virtuales
     virtual void Muestra() = 0;
-    virtual double calculaCosto() = 0;
+    virtual double calculaCosto(int) = 0;
     
     //constructores
     Servicio(){
@@ -13,10 +13,10 @@ public:
         tiempoMax = 0;
         tipo = 'A';
     }
-    Servicio(string saux, int iaux, char caux){
-        clave = saux;
-        tiempoMax = iaux;
-        tipo = caux;
+    Servicio(string sclave, int iTiempoMax, char cTipo){
+        clave = sclave;
+        tiempoMax = iTiempoMax;
+        tipo = cTipo;
     }
     
     //geters

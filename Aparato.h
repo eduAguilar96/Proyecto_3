@@ -5,13 +5,14 @@
 #include "Hora.h"
 
 class Aparato: public Servicio {
+public:
     //constructores
     Aparato() : Servicio(){
         costoX15min = 10.0;
         conInstructor = true;
         descripcion = "sin descripcion";
     }
-    Aparato(string saux, int iaux, char caux, double costo, bool instr, string desc) : Servicio(saux, iaux, caux){
+    Aparato(string sclave, int itiempoMax, char ctipo, double costo, bool instr, string desc) : Servicio(sclave, itiempoMax, ctipo){
         costoX15min = costo;
         conInstructor = instr;
         descripcion = desc;

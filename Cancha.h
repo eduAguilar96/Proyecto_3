@@ -11,7 +11,7 @@ public:
         cantMaxPers = 20;
         deporte = "Segway Polo";
     }
-    Cancha(string saux, int iaux, char caux, double costo, int maxp, string depor) : Servicio(saux, iaux, caux){
+    Cancha(string sclave, int itiempoMax, char ctipo, double costo, int maxp, string depor) : Servicio(sclave, itiempoMax, ctipo){
         costoXHr = costo;
         cantMaxPers = maxp;
         deporte = depor;
